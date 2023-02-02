@@ -64,3 +64,23 @@ Tabela que relaciona os IDs de cada informação da pessoa solicitante
 
 
 ✅Primeiro Alura Challenge Concluido #alura #alurachallengedatascience2
+
+# Resumos:
+## Semana 1 💾
+Nessa semana meu foco foi em entender e analizar o banco de dados da Alura Cash e fazer alguns tratamentos de dados nulos e em brancos(Resolvi fazer esse tratamento pelo Jupyter,pois tenho maior familharidade).Antes disso, juntei as tabelas e exportei elas em forma de [csv](https://github.com/Heveraldob12/AluraDados_Challenge1/blob/main/DADOS/DADOSJUNTOS.csv) para o utilização no Jupyer Notebook
+
+
+## Semana 2 🐍
+
+Como já havia andiantado parte do tratamento, nessa etapa eu removi alguns Outliers e vi a Correlação entre as variavéis para ter melhor entendimento quando for realizar os modelos de Machine learing.Logo após, realizei o balenceamento para que pudesse fazer os modelos de o [endcoding](https://github.com/Heveraldob12/AluraDados_Challenge1/blob/main/pikle%20and%20model/one_hot_enc.pkl), [normalização](https://github.com/Heveraldob12/AluraDados_Challenge1/blob/main/pikle%20and%20model/norm.pkl),vale ressaltar que,  tive certos problemas na realização do endcoding e balanceamentos, que foram sanados no Discord do challenge.
+Então já tendo os modelos de endcoding e normalização exportados pelo pickle, passei a fazer e analizar o modelo de classificação em si utilizei diversos métodos, contudo o [GradientBoostingClassifier](https://github.com/Heveraldob12/AluraDados_Challenge1/blob/main/pikle%20and%20model/model.pkl) foi o que se saiu melhor ao meu critério.
+
+# Semana 3 e 4 🎨
+Essa foi a semana mais desafiadora, não tinha muita experiência com APIs até aquele momentos então passei muita dificuldade em criar uma, até que com prática e aulas na Plataforma Alura eu consegui fazer tanto a [API](https://github.com/Heveraldob12/AluraDados_Challenge1/blob/main/main.py) quanto por meus insights e dados da API no Dashboard abaixo:
+[.](https://github.com/Heveraldob12/AluraDados_Challenge1/blob/main/DashBoard/Alura.pbix)
+
+
+
+
+--
+Caso tenha algum erro gramatical ou de progamação peço para que entrem em contato comigo. ☢️☢️☢️
