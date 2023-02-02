@@ -1,6 +1,6 @@
 # Alura Cash | Challenge Dados
 
-Rápida descrição do objetivo de fazer esse projeto
+Projeto do Desafio de dados da [Alura](https://www.alura.com.br) #alura
 
 | :placard: Vitrine.Dev |     |
 | -------------  | --- |
