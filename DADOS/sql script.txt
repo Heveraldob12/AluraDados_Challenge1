@@ -1,0 +1,89 @@
+---------------------------------------------------------------------------
+ALTER TABLE `analise_risco`.`dados_mutuarios` 
+CHANGE COLUMN `person_id` `pessoa_id` VARCHAR(16) NOT NULL COMMENT '\n' ,
+CHANGE COLUMN `person_age` `idade` INT NULL DEFAULT NULL ,
+CHANGE COLUMN `person_income` `salario_anual` INT NULL DEFAULT NULL ,
+CHANGE COLUMN `person_home_ownership` `situacao_moradia` VARCHAR(8) NULL DEFAULT NULL ,
+CHANGE COLUMN `person_emp_length` `tempo_de_trabalho` DOUBLE NULL DEFAULT NULL ;
+
+
+ALTER TABLE `analise_risco`.`emprestimos` 
+CHANGE COLUMN `loan_id` `id_solicitacao` VARCHAR(16) NOT NULL ,
+CHANGE COLUMN `loan_intent` `motivo_do_emprestimo` VARCHAR(32) NULL DEFAULT NULL ,
+CHANGE COLUMN `loan_grade` `pontuacao` VARCHAR(1) NULL DEFAULT NULL ,
+CHANGE COLUMN `loan_amnt` `valor_emprestimo` INT NULL DEFAULT NULL ,
+CHANGE COLUMN `loan_int_rate` `taxa_de_juros` DOUBLE NULL DEFAULT NULL ,
+CHANGE COLUMN `loan_status` `possibilidade_de_inadimplencia` INT NULL DEFAULT NULL ,
+CHANGE COLUMN `loan_percent_income` `renda_percentual` DOUBLE NULL DEFAULT NULL ;
+
+
+ALTER TABLE `analise_risco`.`historicos_banco` 
+CHANGE COLUMN `cb_id` `id_historico` VARCHAR(16) NOT NULL ,
+CHANGE COLUMN `cb_person_default_on_file` `inadimplente` VARCHAR(1) NOT NULL ,
+CHANGE COLUMN `cb_person_cred_hist_length` `tempo_solicitação` INT NULL DEFAULT NULL ;
+ 
+
+ALTER TABLE `analise_risco`.`ids` 
+CHANGE COLUMN `person_id` `pessoa_id` VARCHAR(16) NOT NULL ,
+CHANGE COLUMN `loan_id` `id_solicitacao` VARCHAR(16) NOT NULL ,
+CHANGE COLUMN `cb_id` `id_historico` VARCHAR(16) NOT NULL ,
+ADD PRIMARY KEY (`pessoa_id`, `id_solicitacao`, `id_historico`);
+;
+
+-----------DADOS DUPLICADOS---------------------------------------------
+
+SELECT pessoa_id, idade, salario_anual, situacao_moradia, tempo_de_trabalho, COUNT(*)  
+FROM dados_mutuarios GROUP BY pessoa_id HAVING COUNT(pessoa_id) > 1;
+
+DELETE FROM dados_mutuarios WHERE pessoa_id = "";
+
+SELECT *,COUNT(*)  
+FROM emprestimos GROUP BY id_solicitacao HAVING COUNT(id_solicitacao) > 1;
+
+SELECT *, COUNT(*)  
+FROM historicos_banco GROUP BY id_historico HAVING COUNT(id_historico) > 1;
+
+SELECT *, COUNT(*)  
+FROM id GROUP BY pessoa_id HAVING COUNT(pessoa_id) > 1
+----------CHAVE PRIMARIA---------------------------------------------
+
+
+ALTER TABLE `analise_risco`.`dados_mutuarios` 
+ADD PRIMARY KEY (`pessoa_id`);
+
+ALTER TABLE `analise_risco`.`emprestimos` 
+ADD PRIMARY KEY (`id_solicitacao`);
+
+ALTER TABLE `analise_risco`.`historicos_banco` 
+ADD PRIMARY KEY (`id_historico`);
+---------CHAVE ESTRANGEIRA-----------------------------------------------
+
+ALTER TABLE ID ADD FOREIGN KEY (pessoa_id) REFERENCES dados_mutuarios(pessoa_id);
+
+ALTER TABLE ID ADD FOREIGN KEY (id_solicitacao) REFERENCES emprestimos(id_solicitacao);
+
+ALTER TABLE ID ADD FOREIGN KEY (id_historico) REFERENCES historicos_banco(id_historico);
+----------TABELA FINAL----------------------------------------------
+CREATE TABLE dados_finais AS SELECT 
+
+dm.pessoa_id,
+dm.idade,
+dm.salario_anual,
+dm.situacao_moradia,
+dm.tempo_de_trabalho,
+e.motivo_do_emprestimo,
+e.pontuacao,
+e.valor_emprestimo,
+e.taxa_de_juros,
+e.possibilidade_de_inadimplencia,
+e.renda_percentual,
+hb.inadimplente,
+hb.tempo_solicitacao
+FROM ids i
+
+JOIN dados_mutuarios dm ON dm.pessoa_id = i.pessoa_id 
+
+JOIN emprestimos e ON e.id_solicitacao = i.id_solicitacao 
+
+JOIN historicos_banco hb ON hb.id_historico = i.id_historico ;
+-------------------------------------------------------------------
