@@ -77,7 +77,7 @@ Então já tendo os modelos de endcoding e normalização exportados pelo pickle
 
 # Semana 3 e 4 🎨
 Essa foi a semana mais desafiadora, não tinha muita experiência com APIs até aquele momentos então passei muita dificuldade em criar uma, até que com prática e aulas na Plataforma Alura eu consegui fazer tanto a [API](https://github.com/Heveraldob12/AluraDados_Challenge1/blob/main/main.py) quanto por meus insights e dados da API no Dashboard abaixo:
-[.](https://github.com/Heveraldob12/AluraDados_Challenge1/blob/main/DashBoard/Alura.pbix)
+![https://github.com/Heveraldob12/AluraDados_Challenge1/blob/main/DashBoard/Alura.pbix](https://github.com/Heveraldob12/AluraDados_Challenge1/blob/main/DashBoard/Captura%20de%20tela%202023-02-02%20202007.png)
 
 
 
