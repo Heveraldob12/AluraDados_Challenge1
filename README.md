@@ -1,5 +1,4 @@
-# AluraDados_Challenge1
-# Nome do meu projeto
+# Alura Cash | Challenge Dados
 
 Rápida descrição do objetivo de fazer esse projeto
 
